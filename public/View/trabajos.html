@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Trabajos reales</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/trabajos.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <h1><img src="../Images/logo3.png"></h1>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="../index.html#productos">Productos</a></li>
+      <li><a href="../index.html#proceso">Cómo trabajamos</a></li>
+      <li><a href="../index.html#galeria">Galería</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="trabajos">
+
+  <h1>Trabajos reales</h1>
+
+  <!-- FILTRO -->
+  <div class="filtros">
+    <button data-filter="all" class="active">Todos</button>
+    <button data-filter="cocina">Cocinas</button>
+    <button data-filter="dormitorio">Placares</button>
+    <button data-filter="baño">Placares</button>
+    <button data-filter="locales">Muebles a medida</button>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <article class="card cocina" onclick="openModal(1)">
+      <img src="../Images/cocina/1.jpg" alt="Cocina a medida">
+      <h3>Cocina a medida</h3>
+      <span>Rosario</span>
+    </article>
+
+    <article class="card dormitorio" onclick="openModal(2)">
+      <img src="../Images/dormitorio/1.jpg" alt="hechos a medida">
+      <h3>Placard corredizo</h3>
+      <span>Funes</span>
+    </article>
+
+    <article class="card baño" onclick="openModal(3)">
+      <img src="../Images/baño/1.jpg" alt="Muebles para baño">
+      <h3>Mueble para baño</h3>
+      <span>Rosario</span>
+    </article>
+
+    <article class="card locales" onclick="openModal(4)">
+      <img src="../Images/locales/1.jpg" alt="Muebles para local comercial">
+      <h3>Muebles para locales</h3>
+      <span>Rosario</span>
+    </article>
+
+  </div>
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+
+    <h2 id="modal-title"></h2>
+
+    <div class="modal-media">
+      <!-- imágenes o video -->
+    </div>
+
+    <p id="modal-desc"></p>
+  </div>
+</div>
+
+<script src="../JS/trabajos.js"></script>
+</body>
+</html>
