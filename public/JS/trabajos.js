@@ -3,45 +3,96 @@ const title = document.getElementById("modal-title");
 const desc = document.getElementById("modal-desc");
 const media = document.querySelector(".modal-media");
 
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+
 const proyectos = {
   1: {
-    title: "Cocina a medida",
-    desc: "Cocina realizada en melamina premium con herrajes soft.",
-    media: `<img src="../Images/cocina/1.jpg"><img src="../Images/cocina/2.jpg">`
+    title: "Amoblamiento de cocina 3,10 mts",
+    desc: "Bajo mesada y alacena de 3,10 m con melamina blanca y frentes gris grafito.",
+    media: [
+      { type: "img", src: "../Images/cocina/1.jpg" },
+      { type: "img", src: "../Images/cocina/2.jpg" },
+      { type: "img", src: "../Images/cocina/3.jpg" }
+    ]
   },
+
   2: {
     title: "Placard corredizo",
-    desc: "Placard de 2 puertas corredizas en melamina color Venecia de 18mm, módulo de placard realizado con melamina color blanco de 18mm, 4 cajones, cubículos, y perchas.",
-    media: `<video controls src="video/placard.mp4"></video>`
+    desc: "Placard con puertas corredizas, interiores personalizados y cajonera.",
+    media: [
+      { type: "img", src: "../Images/dormitorio/1.jpg" },
+      { type: "img", src: "../Images/dormitorio/2.jpg" }
+    ]
   },
+
   3: {
-    title: "Placard corredizo",
-    desc: "Mueble lavatorio en madera maciza cedrillo, pintado en algarrobo y finalizado con hidrolaca.\n2 cajones grandes a la vista + un cajón oculto, correderas telescópicas cierre suave y patas cromadas, piedra beige de kuarzo y zócalos + griferia alta para lavatorio.\nADICIONAL: Tapa de mochila + estante colgante",
-    media: `<video controls src="video/placard.mp4"></video>`
+    title: "Lavatorio",
+    desc: "Mueble de baño en madera maciza con cajones y tapa de cuarzo.",
+    media: [
+      { type: "img", src: "../Images/bano/1.jpg" },
+      { type: "img", src: "../Images/bano/2.jpg" }
+    ]
   },
+
   4: {
-    title: "Placard corredizo",
-    desc: "Placard con puertas espejadas.",
-    media: `<video controls src="video/placard.mp4"></video>`
+    title: "Amoblamiento para local comercial",
+    desc: "Muebles a medida para centro odontológico.",
+    media: [
+      { type: "img", src: "../Images/locales/1.jpg" },
+      { type: "img", src: "../Images/locales/2.jpg" },
+      { type: "video", src: "../videos/1.mp4" }
+    ]
   }
 };
 
 function openModal(id) {
-  title.innerText = proyectos[id].title;
-  desc.innerText = proyectos[id].desc;
-  media.innerHTML = proyectos[id].media;
+  const proyecto = proyectos[id];
+  if (!proyecto) return;
+
+  title.textContent = proyecto.title;
+  desc.textContent = proyecto.desc;
+  media.innerHTML = "";
+
+  proyecto.media.forEach(item => {
+    let element;
+
+    if (item.type === "img") {
+      element = document.createElement("img");
+      element.src = item.src;
+      element.alt = proyecto.title;
+    }
+
+    if (item.type === "video") {
+      element = document.createElement("video");
+      element.src = item.src;
+      element.controls = true;
+    }
+
+    media.appendChild(element);
+  });
+
   modal.style.display = "block";
+  document.body.style.overflow = "hidden";
 }
+
 
 function closeModal() {
   modal.style.display = "none";
   media.innerHTML = "";
+  document.body.style.overflow = "";
 }
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeModal();
+});
+
 
 // FILTRO
 document.querySelectorAll(".filtros button").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelector(".active").classList.remove("active");
+    document.querySelector(".active")?.classList.remove("active");
     btn.classList.add("active");
 
     const filter = btn.dataset.filter;
