@@ -1,0 +1,43 @@
+:root {
+  --color-bg: #f2f2f2;
+  --color-text: #1a1a1a;
+  --color-muted: #666666;
+  --color-accent: #3a3a3a;
+  --color-border: #cfcfcf;
+}
+
+body {
+  background: var(--color-bg);
+}
+
+/* botones */
+button,
+#hero a,
+.btn-galeria {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+}
+
+button:hover,
+#hero a:hover,
+.btn-galeria:hover {
+  background: #000;
+}
+
+/* header */
+header {
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* cards */
+.card img {
+  border-radius: 0;
+}
+
+/* filtros */
+.filtros button {
+  background: #000;
+  color: #fff;
+}

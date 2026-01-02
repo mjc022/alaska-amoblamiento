@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulador de Presupuesto</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/trabajos.css">
+  <link rel="stylesheet" href="../CSS/theme-minimal.css"
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    .box {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+    }
+    .extras label {
+      font-weight: normal;
+    }
+    .total {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>Simulador de Presupuesto</h2>
+
+    <label>Tipo de mueble</label>
+    <select id="categoria"></select>
+
+    <label>Material</label>
+    <select id="material"></select>
+
+    <label>Ancho (cm)</label>
+    <input type="number" id="ancho">
+
+    <label>Alto (cm)</label>
+    <input type="number" id="alto">
+
+    <label>Extras</label>
+    <div class="extras" id="extras"></div>
+
+    <div class="total" id="total">$ 0</div>
+
+    <button onclick="calcular()">Calcular presupuesto</button>
+  </div>
+
+  <script src="simulador.js"></script>
+</body>
+</html>

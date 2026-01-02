@@ -7,13 +7,7 @@
 
 /* VARIABLES */
 :root {
-  --color-bg: #ffffff;
-  --color-text: #1f1f1f;
-  --color-muted: #6b6b6b;
-  --color-accent: #111111;
-  --color-border: #e5e5e5;
-
-  --font-main: 'Inter', system-ui, sans-serif;
+    --font-main: 'Inter', system-ui, sans-serif;
 }
 
 /* BASE */
@@ -221,6 +215,9 @@ button {
   cursor: pointer;
 }
 
+
+
+
 button:hover {
   opacity: 0.85;
 }
@@ -274,4 +271,21 @@ footer {
 .icono-img:hover {
   transform: scale(1.1);
   transition: transform 0.3s;
+}
+
+/* ADMIN */
+.mensaje {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: #e6f4ea;
+  color: #1e7e34;
+  border: 1px solid #b7dfc2;
+  border-radius: 4px;
+  display: none;
+  font-size: 14px;
+}
+.mensaje.error {
+  background: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
 }
