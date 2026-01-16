@@ -135,5 +135,84 @@ nav a:hover {
   text-align: center;
 }
 
+/* ===== RESPONSIVE MOBILE ===== */
+@media (max-width: 768px) {
+
+  /* HEADER */
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 16px 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  nav a {
+    font-size: 1rem;
+  }
+
+  header .logo img {
+    max-width: 140px;
+    width: 100%;
+    height: auto;
+  }
+
+  /* TRABAJOS */
+  .trabajos {
+    padding: 30px 15px;
+  }
+
+  .trabajos h1 {
+    font-size: 1.6rem;
+  }
+
+  /* FILTROS */
+  .filtros {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filtros button {
+    flex: 0 0 auto;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  /* GRID */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* CARD */
+  .card img {
+    aspect-ratio: 4 / 3; /* mantiene proporción */
+    border-radius: 6px;
+  }
+
+  .card h3 {
+    font-size: 0.9rem;
+  }
+
+  /* MODAL */
+  .modal-content {
+    max-width: 95%;
+    max-height: 90vh;
+    padding: 15px;
+  }
+
+  .modal-media img,
+  .modal-media video {
+    max-height: 60vh;
+  }
+}
 
 

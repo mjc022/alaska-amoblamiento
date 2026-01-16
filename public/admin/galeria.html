@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin · Galería</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../Tools/reset.css">
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/theme-wood.css">
+
+  <style>
+   
+    .trabajo {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+    }
+
+    .trabajo small {
+      color: #666;
+    }
+
+    .acciones {
+      margin-top: 10px;
+    }
+
+    .acciones button {
+      width: auto;
+      margin-right: 10px;
+    }
+
+    .estado {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="admin-box">
+
+  <h2>Administrar Galería</h2>
+
+  <button onclick="window.location.href='../View/admin.html'">
+    ← Volver al panel
+  </button>
+
+  <hr>
+
+  <h3>Nuevo trabajo</h3>
+
+  <input id="titulo" type="text" placeholder="Título del trabajo">
+
+  <textarea id="descripcion" placeholder="Descripción"></textarea>
+
+  <select id="categoria">
+    <option value="">Seleccionar categoría</option>
+    <option value="cocina">Cocina</option>
+    <option value="dormitorio">Dormitorio</option>
+    <option value="bano">Baño</option>
+    <option value="locales">Locales</option>
+    <option value="diseno">Diseño</option>
+  </select>
+
+  <input id="archivos" type="file" multiple accept="image/*,video/*">
+
+  <button id="guardarBtn">Guardar trabajo</button>
+
+  <div id="estado" class="estado"></div>
+
+  <hr>
+
+  <h3>Trabajos cargados</h3>
+
+  <div id="listaTrabajos">
+    <!-- se carga por JS -->
+  </div>
+
+</div>
+
+<script type="module" src="./galeria.js"></script>
+</body>
+</html>

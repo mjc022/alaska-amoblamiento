@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar trabajo</title>
+  <link rel="stylesheet" href="../Tools/reset.css">
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/theme-wood.css">
+</head>
+<body>
+
+<body class="admin-page">
+
+<div class="admin-container">
+
+  <a href="../View/trabajos.html" class="btn-back">← Volver a galería</a>
+
+
+  <h2>Editar trabajo</h2>
+
+  <div class="card">
+    <label>Título</label>
+    <input id="titulo">
+
+    <label>Descripción</label>
+    <textarea id="descripcion"></textarea>
+
+    <label>Categoría</label>
+    <select id="categoria">
+      <option value="cocina">Cocina</option>
+      <option value="dormitorio">Dormitorio</option>
+      <option value="bano">Baño</option>
+      <option value="locales">Locales</option>
+      <option value="diseno">Diseño</option>
+    </select>
+
+    <button id="guardarCambios" class="btn-primary">
+      Guardar cambios
+    </button>
+  </div>
+
+  <div class="card">
+    <h3>Archivos del trabajo</h3>
+    <div id="mediaList" class="media-grid"></div>
+  </div>
+
+  <div class="card">
+    <h3>Agregar archivos</h3>
+    <input type="file" id="nuevosArchivos" multiple>
+    <button id="agregarArchivos">Subir archivos</button>
+  </div>
+
+  <p id="estado" class="estado"></p>
+
+</div>
+
+<script type="module" src="../JS/admin/editar-trabajo.js"></script>
+</body>
+</html>

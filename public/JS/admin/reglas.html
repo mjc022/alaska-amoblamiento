@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reglas de herrajes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../../Tools/reset.css">
+  <link rel="stylesheet" href="../../CSS/style.css">
+  <link rel="stylesheet" href="../../CSS/theme-wood.css">
+</head>
+
+<body>
+
+<section id="reglas" class="tab">
+  <div class="admin-box">
+    <h1>🧩 Reglas de herrajes</h1>
+
+    <button onclick="window.location.href='../../View/admin.html'">← Volver al panel</button>
+
+    <label for="herrajeSelect">El herraje</label>
+    <select id="herrajeSelect"></select>
+
+    <label for="aplicaA">Aplica a</label>
+    <select id="aplicaA">
+      <option value="cajon">Cajón</option>
+      <option value="estante">Estante</option>
+      <option value="puerta">Puerta</option>
+    </select>
+
+    <label for="cantidadInput">Cantidad por unidad</label>
+    <input id="cantidadInput" type="number" min="0" step="0.1">
+
+    <button id="agregarReglaBtn">Agregar regla</button>
+
+    <hr>
+
+    <!-- CONTENEDOR DE REGLAS (fundamental para tu JS) -->
+    <div id="listaReglas"></div>
+  </div>
+</section>
+
+<script type="module" src="./reglas.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+/* =========================
+   TERMINACIONES GRID
+========================= */
+.terminaciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+}
+
+.terminacion-item img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* =========================
+   TERMINACIÓN EN PRESUPUESTO
+========================= */
+.terminacion-preview {
+  max-width: 180px; /* pantalla */
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+/* =========================
+   PRINT
+========================= */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #resumenPrint,
+  #resumenPrint * {
+    visibility: visible;
+  }
+
+  .terminacion-preview {
+    max-width: 220px; /* impresión */
+  }
+}
+
+/* ====== SIMULADOR RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .box {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .terminaciones-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 8px;
+  }
+
+  .terminacion-item img {
+    height: 60px;
+  }
+
+  .terminacion-preview {
+    max-width: 140px;
+  }
+
+  #resultado {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminaciones-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  }
+
+  .terminacion-item img {
+    height: 50px;
+  }
+
+  .terminacion-preview {
+    max-width: 120px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}
+/* ====== FIN SIMULADOR RESPONSIVE ====== */

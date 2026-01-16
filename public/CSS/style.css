@@ -7,7 +7,7 @@
 
 /* VARIABLES */
 :root {
-    --font-main: 'Inter', system-ui, sans-serif;
+  --font-main: 'Inter', system-ui, sans-serif;
 }
 
 /* BASE */
@@ -62,7 +62,7 @@ nav a:hover {
 }
 
 .pasos li {
-   display: flex;
+  display: flex;
   align-items: center;
   gap: 14px;
   font-size: 1rem;
@@ -80,9 +80,6 @@ nav a:hover {
     grid-template-columns: 1fr;
   }
 }
-
-
-
 
 /* HERO */
 #hero {
@@ -162,8 +159,6 @@ section h2 {
   padding-left: 20px;
 }
 
-
-
 /* GALERÍA */
 .galeria-teaser {
   text-align: center;
@@ -177,7 +172,6 @@ section h2 {
   border: 1px solid #000;
   text-decoration: none;
 }
-
 
 /* CONTACTO */
 #contacto p {
@@ -214,9 +208,6 @@ button {
   font-size: 0.9rem;
   cursor: pointer;
 }
-
-
-
 
 button:hover {
   opacity: 0.85;
@@ -284,8 +275,375 @@ footer {
   display: none;
   font-size: 14px;
 }
+
 .mensaje.error {
   background: #f8d7da;
   color: #842029;
   border: 1px solid #f5c2c7;
 }
+
+.material-grupo {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.material-header {
+  background: #f5f2ee;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.material-header span {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.material-lista {
+  display: none;
+  padding: 10px 14px;
+  background: #fff;
+}
+
+/* ====== MATERIAL ITEM FIX ====== */
+.material-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* CLAVE */
+  gap: 12px;
+  padding: 8px 0;
+}
+
+/* info izquierda */
+.material-item .info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* acciones derecha */
+.material-item .acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* input precio */
+.material-item .acciones input[type="number"] {
+  width: 90px;
+  padding: 4px 6px;
+  font-size: 13px;
+  text-align: right;
+}
+
+/* checkbox */
+.material-item .acciones label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0px;
+  margin: 0;
+}
+
+.material-item .acciones label input {
+  margin: 0;
+}
+
+/* botones iconos */
+.material-item .acciones button {
+  padding: 4px 6px;
+  font-size: 13px;
+  line-height: 1;
+  height: 28px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* evitar que se vean gigantes */
+.material-item .acciones button i,
+.material-item .acciones button svg {
+  font-size: 14px;
+}
+
+.material-item:last-child {
+  border-bottom: none;
+}
+
+.material-item button {
+  background: #6b4f2d;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.admin-card {
+  display: block;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
+}
+
+.admin-card .icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.admin-card h3 {
+  margin: 0 0 6px;
+}
+
+.admin-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.admin-card span {
+  font-weight: bold;
+  color: #7c4a1d;
+  /* madera */
+}
+
+.admin-box {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.admin-box h2 {
+  margin-bottom: 20px;
+}
+
+.admin-box input,
+.admin-box textarea,
+.admin-box select,
+.admin-box button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.admin-box textarea {
+  min-height: 100px;
+}
+
+/* SIMULADOR */
+@media print {
+  body * {
+    display: none;
+  }
+
+  #resumenPrint,
+  #resumenPrint * {
+    display: block;
+  }
+}
+
+#simulador {
+  max-width: 600px;
+  margin: auto;
+  padding: 40px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+/*EDITOR DE TRABAJOS*/
+.admin-page {
+  background: #f6f4f1;
+}
+
+.admin-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 15px;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+}
+
+.card h3 {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  min-height: 90px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #6b4f2d;
+  color: #fff;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.estado {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* MEDIA */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
+}
+
+.media-grid div {
+  text-align: center;
+}
+
+.media-grid img,
+.media-grid video {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.media-grid button {
+  margin: 5px 2px;
+  padding: 4px 6px;
+  font-size: 12px;
+}
+
+.media-grid button.delete {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #6b4f2d;
+  font-weight: 600;
+}
+
+.btn-back:hover {
+  text-decoration: underline;
+}
+
+.btn-back i {
+  margin-right: 6px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.categoria-row {
+  display: flex;
+  gap: 8px;
+  width: 200px;
+}
+
+#categoria {
+  flex: 1;
+  min-width: 0;
+}
+
+#btnNuevaCategoria {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+/* FIN CSS ADMIN */
+/*terminaciones admin*/
+.terminaciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.terminacion-item {
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.terminacion-item img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.terminacion-item.active {
+  border-color: #000;
+}
+
+/* ===== TERMINACIÓN EN PRESUPUESTO ===== */
+.terminacion-preview {
+  display: block;
+  width: 100%;
+  max-width: 250px; /* 👈 AJUSTÁ ACÁ EL TAMAÑO */
+  height: auto;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* IMPRESIÓN */
+@media print {
+  .terminacion-preview {
+    max-width: 200px;
+  }
+} 
