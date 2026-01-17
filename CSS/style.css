@@ -88,6 +88,12 @@ nav a:hover {
   padding: 120px 20px 100px;
 }
 
+header .logo img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
 #hero h2 {
   font-size: 3rem;
   font-weight: 500;

@@ -120,7 +120,7 @@ document.querySelectorAll(".filtros button").forEach(btn => {
     document.querySelectorAll(".card").forEach(card => {
       card.style.display =
         filtro === "all" || card.classList.contains(filtro)
-          ? "flex"
+          ? "block"
           : "none";
     });
   });

@@ -96,14 +96,10 @@
 
 
 /* LOGO RESPONSIVE */
-header .logo img {
-  max-width: 100%; /* tamaño máximo en desktop */
-  width: 100%;
-  height: auto;
-}
+
 
 @media (max-width: 768px) {
   header .logo img {
-    max-width: 140px; /* tamaño más pequeño en móviles */
+    max-width: 300px; /* tamaño más pequeño en móviles */
   }
 }

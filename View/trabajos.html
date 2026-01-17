@@ -4,16 +4,82 @@
 <head>
   <meta charset="UTF-8">
   <title>Trabajos reales</title>
+
+  <link rel="stylesheet" href="/Tools/reset.css">
   <link rel="stylesheet" href="/CSS/style.css">
   <link rel="stylesheet" href="/CSS/trabajos.css">
   <link rel="stylesheet" href="/CSS/theme-wood.css">
+
+  <!-- FIX HEADER MOBILE SOLO PARA ESTA PÁGINA -->
+  <style>
+    @media (max-width: 768px) {
+
+      /* ROMPE EL MAX-WIDTH QUE VIENE DE style.css */
+      header {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 16px !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+
+      header .logo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 12px;
+      }
+
+      header .logo img {
+        max-width: 200px !important;
+        width: auto !important;
+        height: auto !important;
+      }
+
+      nav {
+        width: 100%;
+      }
+
+      nav ul {
+        width: 100%;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      nav ul li {
+        width: 100%;
+        text-align: center;
+      }
+
+      nav a {
+        display: inline-block;
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 
-<body> <!-- HEADER -->
+<body>
+
+  <!-- HEADER -->
   <header>
     <div class="logo">
-      <h1><a href="/index.html"><img src="/Images/logo3.png"></a></h1>
+      <h1>
+        <a href="/index.html">
+          <img src="/Images/logo3.png" alt="Alaska Amoblamientos">
+        </a>
+      </h1>
     </div>
+
     <nav>
       <ul>
         <li><a href="/index.html#productos">Productos</a></li>
@@ -23,20 +89,35 @@
       </ul>
     </nav>
   </header>
+
+  <!-- TRABAJOS -->
   <section class="trabajos">
-    <h1>Trabajos reales</h1> <!-- FILTRO -->
-    <div class="filtros"> <button data-filter="all">Todos</button> <button data-filter="cocina">Cocinas</button> <button
-        data-filter="dormitorio">Dormitorio</button> <button data-filter="bano">Baño</button> <button
-        data-filter="locales">Locales</button> <button data-filter="diseno">Diseños</button> </div> <!-- GRID -->
-    <div class="grid"> <!-- Trabajos cargados por JS --> </div>
-  </section> <!-- MODAL -->
+    <h1>Trabajos reales</h1>
+
+    <div class="filtros">
+      <button data-filter="all">Todos</button>
+      <button data-filter="cocina">Cocinas</button>
+      <button data-filter="dormitorio">Dormitorio</button>
+      <button data-filter="bano">Baño</button>
+      <button data-filter="locales">Locales</button>
+      <button data-filter="diseno">Diseños</button>
+    </div>
+
+    <div class="grid">
+      <!-- Trabajos cargados por JS -->
+    </div>
+  </section>
+
+  <!-- MODAL -->
   <div id="modal" class="modal">
-    <div class="modal-content"> <span class="close" onclick="closeModal()">×</span>
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
       <h2 id="modal-title"></h2>
-      <div class="modal-media"> <!-- imágenes o video --> </div>
+      <div class="modal-media"></div>
       <p id="modal-desc"></p>
     </div>
   </div>
+
   <script type="module" src="/JS/trabajos.js"></script>
 </body>
 

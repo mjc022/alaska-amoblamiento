@@ -1,5 +1,6 @@
-/* estilos para la página de trabajos reales */
-/*poner los nav al como en el index*/
+/* =========================
+   HEADER DESKTOP
+========================= */
 header {
   max-width: 1200px;
   margin: auto;
@@ -15,7 +16,6 @@ header h1 {
 }
 
 
-
 nav ul {
   display: flex;
   gap: 24px;
@@ -23,20 +23,26 @@ nav ul {
 }
 
 nav a {
-  font-size: 0.95rem;
-  color: var(--color-muted);
+  font-size: 1.2rem;
+  text-decoration: none;
 }
 
 nav a:hover {
   color: var(--color-text);
 }
 
+/* =========================
+   SECCIÓN TRABAJOS
+========================= */
 .trabajos {
   max-width: 1200px;
   margin: auto;
   padding: 40px 20px;
 }
 
+/* =========================
+   FILTROS
+========================= */
 .filtros {
   display: flex;
   gap: 10px;
@@ -46,17 +52,22 @@ nav a:hover {
 .filtros button {
   padding: 8px 16px;
   border: 1px solid #000;
-  background: none;
+  background: #000;
+  color: #fff;
   cursor: pointer;
-    background: #000;
-  color: #fff
 }
 
-
+/* =========================
+   GRID / CARDS
+========================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
 
 .card {
-  display: flex;
-  flex-direction: column;
+  display: block;
 }
 
 .card img {
@@ -67,44 +78,31 @@ nav a:hover {
   display: block;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
-
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-
 .card h3 {
   margin-top: 10px;
   font-size: 0.95rem;
 }
 
-
+/* =========================
+   MODAL
+========================= */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,.8);
+  z-index: 999;
 }
 
 .modal-content {
   background: #fff;
-  max-width: 900px;
-  margin: 5% auto;
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  margin: 5vh auto;
   padding: 20px;
+  overflow-y: auto;
+  border-radius: 6px;
 }
 
 .close {
@@ -113,53 +111,74 @@ nav a:hover {
   font-size: 24px;
 }
 
-.modal-media img,
-.modal-media video {
-  max-width: 100%;
-  max-height: 70vh;     /* nunca más alto que la pantalla */
-  object-fit: contain; /* entra completo sin deformar */
-  display: block;
-  margin: 0 auto 15px;
-}
-
-.modal-content {
-  max-width: 900px;
-  max-height: 85vh;
-  overflow-y: auto; /* scroll si hay muchas imágenes */
-}
-.modal-media video {
-  width: 100%;
-  height: auto;
-}
 .modal-media {
   text-align: center;
 }
 
-/* ===== RESPONSIVE MOBILE ===== */
+.modal-media img,
+.modal-media video {
+  max-width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+#modal-desc {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
 @media (max-width: 768px) {
 
-  /* HEADER */
+  /* HEADER MOBILE */
   header {
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    justify-content: center;
     padding: 16px 20px;
+    gap: 14px;
+  }
+
+  /* LOGO */
+  header .logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  header .logo img {
+    width: auto;
+    max-width: 200px;
+    height: auto;
+  }
+
+  /* NAV */
+  nav {
+    width: 100%;
   }
 
   nav ul {
+    display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: center;
   }
 
   nav a {
     font-size: 1rem;
-  }
-
-  header .logo img {
-    max-width: 140px;
-    width: 100%;
-    height: auto;
+    display: inline-block;
   }
 
   /* TRABAJOS */
@@ -167,21 +186,15 @@ nav a:hover {
     padding: 30px 15px;
   }
 
-  .trabajos h1 {
-    font-size: 1.6rem;
-  }
-
   /* FILTROS */
   .filtros {
-    flex-wrap: nowrap;
     overflow-x: auto;
+    flex-wrap: nowrap;
     gap: 8px;
     padding-bottom: 8px;
-    -webkit-overflow-scrolling: touch;
   }
 
   .filtros button {
-    flex: 0 0 auto;
     font-size: 0.85rem;
     padding: 6px 12px;
   }
@@ -190,16 +203,6 @@ nav a:hover {
   .grid {
     grid-template-columns: 1fr;
     gap: 20px;
-  }
-
-  /* CARD */
-  .card img {
-    aspect-ratio: 4 / 3; /* mantiene proporción */
-    border-radius: 6px;
-  }
-
-  .card h3 {
-    font-size: 0.9rem;
   }
 
   /* MODAL */
@@ -211,8 +214,11 @@ nav a:hover {
 
   .modal-media img,
   .modal-media video {
-    max-height: 60vh;
+    max-height: 55vh;
+  }
+
+  #modal-desc {
+    font-size: 0.9rem;
   }
 }
-
 
