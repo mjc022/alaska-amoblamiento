@@ -1,144 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Alaska Amueblamientos | Muebles a medida</title>
   <link rel="stylesheet" href="Tools/reset.css">
   <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/public.css">
+  <link rel="stylesheet" href="CSS/theme-wood.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Muebles a medida en Argentina. Diseño, fabricación e instalación. Pedí tu presupuesto.">
+  <meta name="description"
+    content="Muebles a medida en Argentina. Diseño, fabricación e instalación. Pedí tu presupuesto.">
 </head>
 
-<body>
+<body> <!-- HEADER -->
+  <header>
+    <div class="caja">
+      <div class="logo">
+        <img src="Images/logo3.png" alt="Alaska Amoblamientos">
+      </div>
 
-<!-- HEADER -->
-<header>
-  <div class="logo">
-    <img src="Images/logo3.png" alt="Alaska Amoblamientos">
-  </div>
+      <nav>
+        <ul>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#proceso">Cómo trabajamos</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- HERO -->
+  <section id="hero">
+    <h2>Muebles a medida, hechos para durar</h2>
+    <p>Diseñamos y fabricamos muebles funcionales con terminaciones profesionales.</p>
 
-  <nav>
-    <ul>
-      <li><a href="#productos">Productos</a></li>
-      <li><a href="#proceso">Cómo trabajamos</a></li>
-      <li><a href="#galeria">Galería</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
-</header>
+    <div class="hero-actions">
+      <a href="#contacto">Pedí tu presupuesto</a>
+      <a href="/View/simulador.html" class="btn-secundario">Simular presupuesto</a>
+    </div>
+  </section>
 
+  <section id="productos">
+    <h2>Qué hacemos</h2>
+    <div class="productos-grid">
+      <article>
+        <h3><a href="/View/trabajos.html?categoria=cocina">Cocinas</a></h3>
+        <p>Diseño funcional, materiales resistentes y herrajes de calidad.</p>
+      </article>
+      <article>
+        <h3><a href="/View/trabajos.html?categoria=dormitorio">Placards</a></h3>
+        <p>Interiores personalizados y puertas a medida.</p>
+      </article>
+      <article>
+        <h3><a href="/View/trabajos.html?categoria=diseno">Diseños</a></h3>
+        <p>Muebles modernos adaptados a tu espacio.</p>
+      </article>
+    </div>
+  </section> <!-- PROCESO -->
+  <section id="proceso">
+    <h2>Cómo trabajamos</h2>
+    <ol class="pasos">
+      <li> <img src="Images/iconos/wp.png" class="icono-img" alt="WhatsApp"> <span>Nos contactás por WhatsApp o
+          formulario</span> </li>
+      <li> <img src="Images/iconos/medir.png" class="icono-img" alt="Diseño"> <span>Diseñamos según tu espacio y
+          necesidad</span> </li>
+      <li> <img src="Images/iconos/talle.png" class="icono-img" alt="Fabricación"> <span>Fabricamos en nuestro
+          taller</span> </li>
+      <li> <img src="Images/iconos/delive.png" class="icono-img" alt="Entrega"> <span>Entregamos e instalamos</span>
+      </li>
+    </ol>
+  </section> <!-- GALERÍA -->
+  <section id="galeria" class="galeria-teaser">
+    <h2>Trabajos y diseños</h2>
+    <p> No usamos renders. Todos los proyectos que ves están diseñados y fabricados por nosotros. </p> <a
+      href="/View/trabajos.html" class="btn-galeria"> Explorar galería </a>
+  </section> <!-- CONTACTO -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>Contanos qué necesitás y te pasamos presupuesto.</p>
+    <form id="contactForm">
+      <input id="c_nombre" type="text" placeholder="Nombre" required>
+      <input id="c_tel" type="tel" placeholder="Teléfono / WhatsApp" required>
+      <textarea id="c_msg" placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar consulta</button>
+      <p id="contactStatus" style="margin-top:12px;"></p>
+    </form>
 
-<!-- HERO -->
-<section id="hero">
-  <h2>Muebles a medida, hechos para durar</h2>
-  <p>Diseñamos y fabricamos muebles funcionales con terminaciones profesionales.</p>
-  <a href="#contacto">Pedí tu presupuesto</a>
-</section>
+    <script type="module" src="/JS/contacto.js"></script>
 
-<!-- PRODUCTOS -->
-<section id="productos">
-  <h2>Qué hacemos</h2>
-
-  <div class="productos-grid">
-    <article>
-      <h3><a href="../public/View/trabajos.html?categoria=cocina">Cocinas</a></h3>
-      <p>Diseño funcional, materiales resistentes y herrajes de calidad.</p>
-    </article>
-
-    <article>
-      <h3><a href="../public/View/trabajos.html?categoria=dormitorio">Placards</a></h3>
-      <p>Interiores personalizados y puertas a medida.</p>
-    </article>
-
-    <article>
-      <h3><a href="../public/View/trabajos.html?categoria=diseno">Diseños</a></h3>
-      <p>Muebles modernos adaptados a tu espacio.</p>
-    </article>
-  </div>
-</section>
-
-<!-- PROCESO -->
-<section id="proceso">
-  <h2>Cómo trabajamos</h2>
-
-  <ol class="pasos">
-    <li>
-      <img src="Images/iconos/wp.png" class="icono-img" alt="WhatsApp">
-      <span>Nos contactás por WhatsApp o formulario</span>
-    </li>
-
-    <li>
-      <img src="Images/iconos/medir.png" class="icono-img" alt="Diseño">
-      <span>Diseñamos según tu espacio y necesidad</span>
-    </li>
-
-    <li>
-      <img src="Images/iconos/talle.png" class="icono-img" alt="Fabricación">
-      <span>Fabricamos en nuestro taller</span>
-    </li>
-
-    <li>
-      <img src="Images/iconos/delive.png" class="icono-img" alt="Entrega">
-      <span>Entregamos e instalamos</span>
-    </li>
-  </ol>
-</section>
-
-
-
-<!-- GALERÍA -->
-
-<section id="galeria" class="galeria-teaser">
-  <h2>Trabajos y diseños</h2>
-
-  <p>
-    No usamos renders. Todos los proyectos que ves
-    están diseñados y fabricados por nosotros.
-  </p>
-
-  <a href="./View/trabajos.html" class="btn-galeria">
-    Explorar galería
-  </a>
-</section>
-
-
-<!-- CONTACTO -->
-<section id="contacto">
-  <h2>Contacto</h2>
-
-  <p>Contanos qué necesitás y te pasamos presupuesto.</p>
-
-  <form>
-    <input type="text" placeholder="Nombre" required>
-    <input type="tel" placeholder="Teléfono / WhatsApp" required>
-    <textarea placeholder="Mensaje"></textarea>
-    <button type="submit">Enviar consulta</button>
-  </form>
-
-  <p>
-    📱 WhatsApp: <a href="https://wa.me/549297155168429">Escribinos directo</a>
-  </p>
-  <div class="social-links">
-  <a href="https://wa.me/549XXXXXXXXXX" target="_blank" aria-label="WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
-
-  <a href="https://www.instagram.com/TU_USUARIO" target="_blank" aria-label="Instagram">
-    <i class="fa-brands fa-instagram"></i>
-  </a>
-
-  <a href="https://www.facebook.com/TU_PAGINA" target="_blank" aria-label="Facebook">
-    <i class="fa-brands fa-facebook"></i>
-  </a>
-</div>
-
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 NombreMarca · Muebles a medida · Argentina</p>
-</footer>
-
+    <p> 📱 WhatsApp: <a href="https://wa.me/549297155168429">Escribinos directo</a> </p>
+    <div class="social-links"> <a href="https://wa.me/549XXXXXXXXXX" target="_blank" aria-label="WhatsApp"> <i
+          class="fa-brands fa-whatsapp"></i> </a> <a href="https://www.instagram.com/TU_USUARIO" target="_blank"
+        aria-label="Instagram"> <i class="fa-brands fa-instagram"></i> </a> <a href="https://www.facebook.com/TU_PAGINA"
+        target="_blank" aria-label="Facebook"> <i class="fa-brands fa-facebook"></i> </a> </div>
+  </section> <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Alaska Amoblamientos · Muebles a medida · Argentina . <a href="/View/login.html">Login</a></p>
+  </footer>
 </body>
+
 </html>
