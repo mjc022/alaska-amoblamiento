@@ -1,0 +1,45 @@
+:root {
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-muted: #6b6b6b;
+  --color-accent: #111111;
+  --color-border: #e5e5e5;
+}
+
+/* fondo general */
+body {
+  background: var(--color-bg);
+}
+
+/* botones */
+button,
+#hero a,
+.btn-galeria {
+  border: 1px solid var(--color-text);
+  background: transparent;
+  color: var(--color-text);
+}
+
+button:hover,
+#hero a:hover,
+.btn-galeria:hover {
+  background: var(--color-text);
+  color: #fff;
+}
+
+/* header */
+header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* tarjetas */
+.productos-grid article,
+.card {
+  background: #fff;
+}
+
+/* filtros */
+.filtros button {
+  background: #111;
+  color: #fff;
+}

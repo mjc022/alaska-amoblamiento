@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin · Terminaciones</title>
+  <link rel="stylesheet" href="/Tools/reset.css">
+  <link rel="stylesheet" href="/CSS/style.css">
+  <link rel="stylesheet" href="/CSS/theme-wood.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="admin-box">
+
+
+ <button onclick="window.location.href='/View/admin.html'">
+    ← Volver al panel
+    </button>
+    <h2>Administrar Terminaciones</h2>
+  <div class="card">
+    <h3>Agregar / editar terminación</h3>
+
+    <label>Nombre</label>
+    <input id="nombre">
+
+    <label>Colección</label>
+    <select id="coleccion">
+      <option value="natural">Natural</option>
+      <option value="nativas">Nativas</option>
+      <option value="life">Life</option>
+    </select>
+
+    <label>Imagen</label>
+    <input type="file" id="imagenFile" accept="image/*">
+
+    <button id="guardarBtn" class="btn-primary">Guardar</button>
+  </div>
+
+  <div class="card">
+    <h3>Terminaciones cargadas</h3>
+    <div id="lista"></div>
+  </div>
+
+
+
+<script type="module" src="./admin-terminaciones.js"></script>
+</body>
+</html>

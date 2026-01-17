@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Trabajos reales</title>
+
+  <link rel="stylesheet" href="/Tools/reset.css">
+  <link rel="stylesheet" href="/CSS/style.css">
+  <link rel="stylesheet" href="/CSS/theme-wood.css">
+  <link rel="stylesheet" href="/CSS/trabajos.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  
+
+  <header>
+  <div class="caja">
+    <h1 class="logo">
+      <a href="/index.html">
+      <img src="/Images/logo3.png" alt="Alaska Amoblamientos">
+      </a>
+    </h1>
+
+    <nav>
+      <ul>
+        <li><a href="/index.html#productos">Productos</a></li>
+        <li><a href="/index.html#proceso">Cómo trabajamos</a></li>
+        <li><a href="/index.html#galeria">Galería</a></li>
+        <li><a href="/index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+  <!-- TRABAJOS -->
+  <section class="trabajos">
+    <h1>Trabajos reales</h1>
+
+    <div class="filtros">
+      <button data-filter="all">Todos</button>
+      <button data-filter="cocina">Cocinas</button>
+      <button data-filter="dormitorio">Dormitorio</button>
+      <button data-filter="bano">Baño</button>
+      <button data-filter="locales">Locales</button>
+      <button data-filter="diseno">Diseños</button>
+    </div>
+
+    <div class="trabajos-grid">
+      <!-- Trabajos cargados por JS -->
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">×</span>
+      <h2 id="modal-title"></h2>
+      <div class="modal-media"></div>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+
+  <script type="module" src="/JS/trabajos.js"></script>
+</body>
+
+</html>

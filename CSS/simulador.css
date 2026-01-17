@@ -1,0 +1,150 @@
+/* ===============================
+   SIMULADOR – LAYOUT BASE
+================================ */
+#simulador {
+  max-width: 640px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+/* título */
+#simulador h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* ===============================
+   FORM
+================================ */
+#simulador label {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+#simulador input,
+#simulador select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 4px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+}
+
+/* ===============================
+   TERMINACIONES
+================================ */
+#simulador .terminaciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 12px;
+  margin: 12px 0 20px;
+}
+
+#simulador .terminacion-item {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+#simulador .terminacion-item img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+#simulador .terminacion-item small {
+  display: block;
+  text-align: center;
+  margin-top: 4px;
+  font-size: 0.7rem;
+}
+
+#simulador .terminacion-item.active {
+  border-color: #000;
+}
+
+/* ===============================
+   BOTONES
+================================ */
+#simulador button {
+  margin-top: 18px;
+  width: 100%;
+  padding: 12px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+}
+
+#simulador button + button {
+  margin-top: 10px;
+}
+
+/* ===============================
+   RESULTADO
+================================ */
+#resultado {
+  margin-top: 18px;
+  padding: 14px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: #f5f2ee;
+  border-radius: 8px;
+}
+
+/* ===============================
+   RESUMEN PRINT
+================================ */
+#resumenPrint {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+#resumenPrint img {
+  max-width: 220px;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  #simulador {
+    margin: 20px 10px;
+    padding: 20px 16px;
+  }
+
+  #simulador h2 {
+    font-size: 1.4rem;
+  }
+
+  #resultado {
+    font-size: 1.1rem;
+  }
+}
+
+/* ===============================
+   PRINT
+================================ */
+@media print {
+  body * {
+    display: none !important;
+  }
+
+  #resumenPrint,
+  #resumenPrint * {
+    display: block !important;
+  }
+
+  #resumenPrint {
+    margin: 0;
+    padding: 0;
+  }
+}

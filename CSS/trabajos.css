@@ -1,0 +1,182 @@
+/* ===============================
+   SECCIÓN
+================================ */
+.trabajos {
+  padding: 60px 20px;
+}
+
+.trabajos h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ===============================
+   GRID
+================================ */
+.trabajos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* ===============================
+   CARD
+================================ */
+.trabajos-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.trabajos-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+/* IMAGEN UNIFORME */
+.trabajos-card img {
+  width: 100%;
+  height: 180px;        /* 🔥 TODAS IGUALES */
+  object-fit: cover;    /* 🔥 RECORTE PROLIJO */
+  display: block;
+}
+
+/* TEXTO */
+.trabajos-card h3 {
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* ===============================
+   MODAL (CLAVE)
+================================ */
+/* ===============================
+   MODAL SCROLL FIX
+================================ */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 9999;
+
+  /* 🔥 CLAVE */
+  overflow-y: auto;
+}
+
+/* CONTENEDOR */
+.modal-content {
+  background: #fff;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 10px;
+
+  /* 🔥 PERMITE SCROLL INTERNO */
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+
+.modal-media img,
+.modal-media video {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+#modal-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* ===============================
+   BOTÓN CERRAR MODAL
+================================ */
+.modal-content {
+  position: relative; /* 🔥 CLAVE */
+}
+
+/* X */
+.modal .close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+
+  color: #000;
+  background: none;
+  border: none;
+
+  z-index: 10;
+}
+
+/* hover suave */
+.modal .close:hover {
+  opacity: 0.6;
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 768px) {
+  .trabajos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+
+  .trabajos-card img {
+    height: 140px;
+  }
+
+  .trabajos-card h3 {
+    font-size: 0.95rem;
+  }
+  
+  nav{
+    position: static;
+    transform: none;
+  }
+}
+
+/* ===============================
+   FILTROS
+================================ */
+.filtros{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 auto 30px; /* <-- separación con la galería */
+}
+
+.filtros button{
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.filtros button.active{
+  background: var(--color-text);
+  color: #fff;
+  border-color: var(--color-text);
+}
+
+/* un poco de aire arriba del grid también */
+.trabajos-grid{
+  margin-top: 10px;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin · Muebles</title>
+  <link rel="stylesheet" href="/Tools/reset.css">
+  <link rel="stylesheet" href="/CSS/style.css">
+  <link rel="stylesheet" href="/CSS/theme-wood.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+    input, select, button { padding: 8px; }
+    .mueble-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      align-items: center;
+    }
+    .acciones button { margin-left: 6px; }
+  </style>
+</head>
+
+<body>
+  <div class="admin-box">
+    <h2>Administrar Muebles</h2>
+
+    <button onclick="window.location.href='/View/admin.html'">
+    ← Volver al panel
+    </button>
+
+    <h4>Agregar / editar mueble</h4>
+    <div class="row">
+    <input id="nombre" placeholder="Nombre del mueble">
+  
+  <div class="categoria-row">
+    <select id="categoria"></select>
+    <button id="btnNuevaCategoria" type="button">＋</button>
+  </div>
+</div>
+
+    
+
+    <div class="row">
+      <label><input type="checkbox" id="usa_cajones"> Cajones</label>
+      <label><input type="checkbox" id="usa_puertas"> Puertas</label>
+      <label><input type="checkbox" id="usa_estantes"> Estantes</label>
+      <label><input type="checkbox" id="usa_profundidad" checked> Profundidad</label>
+      <label><input type="checkbox" id="activo" checked> Activo</label>
+    </div>
+
+    <button id="guardarBtn">Guardar</button>
+    
+
+
+    <hr>
+
+    <input id="buscadorMuebles" placeholder="Buscar mueble..." style="margin-bottom:10px; padding:6px; width:100%; max-width:300px;">
+
+
+    <h4>Muebles existentes</h4>
+    <div id="lista"></div>
+  </div>
+  
+
+  <script type="module" src="/JS/admin/admin-muebles.js"></script>
+</body>
+   
+</html>
+
+

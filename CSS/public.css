@@ -1,0 +1,162 @@
+/* ===============================
+   INDEX – AJUSTES GENERALES
+================================ */
+
+/* HERO */
+#hero {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#hero a {
+  width: fit-content;
+}
+
+#hero .btn-secundario {
+  border: 1px solid var(--color-text);
+  padding: 14px 28px;
+  font-size: 0.9rem;
+  margin-left: 12px;
+}
+
+/* ===============================
+   HEADER (mobile)
+================================ */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+/* ===============================
+   HERO RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  #hero {
+    padding: 80px 20px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #hero h2 {
+    font-size: 2.1rem;
+    line-height: 1.2;
+  }
+
+  #hero p {
+    font-size: 1rem;
+  }
+
+  #hero a {
+    width: 100%;
+    text-align: center;
+  }
+
+  #hero .btn-secundario {
+    margin-left: 0;
+  }
+
+   #hero .hero-actions {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+  }
+}
+
+
+
+ 
+
+
+/* ===============================
+   PRODUCTOS
+================================ */
+.productos-grid article {
+  transition: transform 0.2s ease;
+}
+
+.productos-grid article:hover {
+  transform: translateY(-4px);
+}
+
+/* ===============================
+   PROCESO (pasos)
+================================ */
+@media (max-width: 768px) {
+  .pasos li {
+    align-items: flex-start;
+  }
+
+  .icono-img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ===============================
+   GALERÍA TEASER
+================================ */
+.galeria-teaser p {
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+
+/* ===============================
+   CONTACTO
+================================ */
+#contacto form {
+  width: 100%;
+}
+
+#contacto p a {
+  text-decoration: underline;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+footer p {
+  line-height: 1.6;
+}
+
+/* ===============================
+   MOBILE FINO
+================================ */
+@media (max-width: 480px) {
+  section h2 {
+    font-size: 1.7rem;
+  }
+
+  .productos-grid {
+    gap: 30px;
+  }
+
+  button,
+  input,
+  textarea {
+    font-size: 1rem;
+  }
+  
+}
+
+#hero a {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+#hero .btn-secundario {
+  border: 1px solid var(--color-text);
+  padding: 14px 28px;
+}
+
+
+
