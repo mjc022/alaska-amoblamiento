@@ -4,7 +4,7 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 const supabase = createClient(
   "https://jaubtlunajybgihikjrw.supabase.co",
-  "TU_ANON_KEY"
+  "sb_publishable_vvStv0iJTiwMYmGhy-JXqw_2DAfWH3z"
 );
 
 const form = document.getElementById("contactForm");
