@@ -81,9 +81,13 @@
     <h2>Contacto</h2>
     <p>Contanos qué necesitás y te pasamos presupuesto.</p>
     <form id="contactForm">
-      <input id="c_nombre" type="text" placeholder="Nombre" required>
-      <input id="c_tel" type="tel" placeholder="Teléfono / WhatsApp" required>
-      <textarea id="c_msg" placeholder="Mensaje" required></textarea>
+      <!-- Honeypot anti-spam (no lo ve un humano) -->
+      <input id="c_web" type="text" name="web" autocomplete="off" tabindex="-1"
+        style="position:absolute; left:-9999px; top:-9999px; height:1px; width:1px;">
+      <!-- Fin honeypot -->
+      <input id="c_nombre" type="text" placeholder="Nombre" required minlength="2">
+      <input id="c_tel" type="tel" placeholder="Teléfono / WhatsApp" required minlength="6">
+      <textarea id="c_msg" placeholder="Mensaje" required minlength="5"></textarea>
       <button type="submit">Enviar consulta</button>
       <p id="contactStatus" style="margin-top:12px;"></p>
     </form>
@@ -91,9 +95,9 @@
     <script type="module" src="/JS/contacto.js"></script>
 
     <p> 📱 WhatsApp: <a href="https://wa.me/549297155168429">Escribinos directo</a> </p>
-    <div class="social-links"> <a href="https://wa.me/549XXXXXXXXXX" target="_blank" aria-label="WhatsApp"> <i
-          class="fa-brands fa-whatsapp"></i> </a> <a href="https://www.instagram.com/TU_USUARIO" target="_blank"
-        aria-label="Instagram"> <i class="fa-brands fa-instagram"></i> </a> <a href="https://www.facebook.com/TU_PAGINA"
+    <div class="social-links"> <a href="https://wa.me/549297155168429" target="_blank" aria-label="WhatsApp"> <i
+          class="fa-brands fa-whatsapp"></i> </a> <a href="https://www.instagram.com/maxi_casalanguita" target="_blank"
+        aria-label="Instagram"> <i class="fa-brands fa-instagram"></i> </a> <a href="https://www.facebook.com/maximilianojavier.casalanguita"
         target="_blank" aria-label="Facebook"> <i class="fa-brands fa-facebook"></i> </a> </div>
   </section> <!-- FOOTER -->
   <footer>
