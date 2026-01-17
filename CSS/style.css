@@ -24,26 +24,55 @@ a {
   text-decoration: none;
 }
 
-/* HEADER */
-header {
-  max-width: 1200px;
-  margin: auto;
-  padding: 24px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* ===== HEADER CLÁSICO (ESTABLE Y RESPONSIVE) ===== */
+header{
+  background: #fbfafa;
+  padding: 20px 0;
 }
+
+.caja{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+
+/* DESKTOP */
+nav{
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+nav ul{
+  list-style: none;
+}
+
+nav li{
+  display: inline-block;
+  margin-left: 20px;
+}
+
+nav a{
+  color: #000;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+
+nav a:hover{
+  opacity: 0.7;
+}
+
+
 
 header h1 {
   font-size: 1.2rem;
   letter-spacing: 1px;
 }
 
-nav ul {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-}
 
 nav a {
   font-size: 0.95rem;
@@ -53,6 +82,9 @@ nav a {
 nav a:hover {
   color: var(--color-text);
 }
+
+
+
 
 /* PASOS */
 .pasos {
@@ -88,11 +120,7 @@ nav a:hover {
   padding: 120px 20px 100px;
 }
 
-header .logo img {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-  }
+
 
 #hero h2 {
   font-size: 3rem;
@@ -653,3 +681,27 @@ button:hover {
     max-width: 200px;
   }
 } 
+
+/* ===== HEADER MOBILE GLOBAL FIX ===== */
+@media (max-width: 768px){
+  .caja{
+    text-align: center;
+  }
+
+  nav{
+    position: static;
+    transform: none;
+    margin-top: 12px;
+  }
+
+  nav li{
+    display: block;
+    margin: 8px 0;
+  }
+
+  .logo img{
+    height: 90px;
+    margin: 0 auto;
+  }
+}
+

@@ -1,5 +1,8 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
+/* ===============================
+   SUPABASE
+================================ */
 const supabase = createClient(
   "https://jaubtlunajybgihikjrw.supabase.co",
   "sb_publishable_vvStv0iJTiwMYmGhy-JXqw_2DAfWH3z"
@@ -11,11 +14,11 @@ const supabase = createClient(
 const categoriaSelect = document.getElementById("categoria");
 const muebleSelect = document.getElementById("mueble");
 const materialSelect = document.getElementById("material");
-const resultadoDiv = document.getElementById("resultado");
-const resumenPrint = document.getElementById("resumenPrint");
-
 const coleccionSelect = document.getElementById("coleccionTerminacion");
 const grid = document.getElementById("terminacionesGrid");
+const calcularBtn = document.getElementById("calcularBtn");
+const resultadoDiv = document.getElementById("resultado");
+const resumenPrint = document.getElementById("resumenPrint");
 
 /* ===============================
    ESTADO
@@ -34,13 +37,11 @@ const cm2ToM2 = v => v / 10000;
 ================================ */
 function toggle(id, visible) {
   const input = document.getElementById(id);
-  if (!input) return;
-
-  const label = input.previousElementSibling;
-  if (label) label.style.display = visible ? "block" : "none";
+  const label = input?.previousElementSibling;
+  if (!input || !label) return;
 
   input.style.display = visible ? "block" : "none";
-
+  label.style.display = visible ? "block" : "none";
   if (!visible) input.value = 0;
 }
 
@@ -48,7 +49,12 @@ function toggle(id, visible) {
    CARGAS
 ================================ */
 async function cargarCategorias() {
-  const { data } = await supabase.from("categorias").select("*").eq("activo", true);
+  const { data } = await supabase
+    .from("categorias")
+    .select("id, nombre")
+    .eq("activo", true)
+    .order("nombre");
+
   categoriaSelect.innerHTML = "";
   data.forEach(c => {
     const o = document.createElement("option");
@@ -56,15 +62,17 @@ async function cargarCategorias() {
     o.textContent = c.nombre;
     categoriaSelect.appendChild(o);
   });
-  cargarMuebles(data[0].id);
+
+  if (data.length) cargarMuebles(data[0].id);
 }
 
-async function cargarMuebles(cat) {
+async function cargarMuebles(catId) {
   const { data } = await supabase
     .from("muebles")
     .select("*")
-    .eq("categoria_id", cat)
-    .eq("activo", true);
+    .eq("categoria_id", catId)
+    .eq("activo", true)
+    .order("nombre");
 
   muebleSelect.innerHTML = "";
   data.forEach(m => {
@@ -74,7 +82,7 @@ async function cargarMuebles(cat) {
     muebleSelect.appendChild(o);
   });
 
-  setMueble(JSON.parse(muebleSelect.selectedOptions[0].dataset.mueble));
+  if (data.length) setMueble(JSON.parse(muebleSelect.selectedOptions[0].dataset.mueble));
 }
 
 function setMueble(m) {
@@ -84,33 +92,28 @@ function setMueble(m) {
   toggle("puertas", m.usa_puertas);
   toggle("estantes", m.usa_estantes);
 }
+
 /* ===============================
    MATERIALES
 ================================ */
 async function cargarMateriales() {
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from("materiales")
     .select("id, nombre, precio")
     .eq("activo", true)
     .eq("tipo", "estructura")
     .order("nombre");
 
-  if (error) {
-    console.error("Error cargando materiales", error);
-    return;
-  }
-
   materialSelect.innerHTML = "";
-
   data.forEach(m => {
-    const opt = document.createElement("option");
-    opt.value = m.id;
-    opt.textContent = m.nombre;
-    opt.dataset.precio = m.precio; // 🔴 ESTO ES CLAVE
-    materialSelect.appendChild(opt);
+    const o = document.createElement("option");
+    o.value = m.id;
+    o.textContent = m.nombre;
+    o.dataset.precio = m.precio;
+    materialSelect.appendChild(o);
   });
 }
- 
+
 /* ===============================
    TERMINACIONES
 ================================ */
@@ -139,78 +142,127 @@ async function cargarTerminaciones(col) {
 }
 
 /* ===============================
-   CALCULAR
+   AUX DB
+================================ */
+async function obtenerMaterialPisoCajon() {
+  const { data } = await supabase
+    .from("materiales")
+    .select("precio")
+    .eq("tipo", "piso_cajon")
+    .eq("activo", true)
+    .single();
+  return data ? Number(data.precio) : 0;
+}
+
+async function obtenerMargen() {
+  const { data } = await supabase
+    .from("configuracion")
+    .select("margen")
+    .eq("id", 1)
+    .single();
+  return data ? Number(data.margen) : 0;
+}
+
+async function calcularHerrajes(tipo, cantidad) {
+  if (cantidad <= 0) return 0;
+
+  const { data } = await supabase
+    .from("reglas_herrajes")
+    .select("cantidad_por_unidad, materiales(precio)")
+    .eq("aplica_a", tipo)
+    .eq("activo", true);
+
+  return data.reduce(
+    (acc, r) => acc + r.cantidad_por_unidad * cantidad * r.materiales.precio,
+    0
+  );
+}
+
+/* ===============================
+   CALCULO (CORREGIDO)
 ================================ */
 async function calcular() {
+  console.clear();
+  console.log("=== CALCULO ===");
+
+  if (!muebleActual) return alert("No hay mueble");
   if (!terminacionSeleccionada) return alert("Elegí una terminación");
 
-  const ancho = Number(document.getElementById("ancho").value || 0);
-  const alto  = Number(document.getElementById("alto").value || 0);
-  const prof  = muebleActual.usa_profundidad
-  ? Number(document.getElementById("profundidad").value || 0)
-  : 0;
+  const ancho = num(document.getElementById("ancho").value);
+  const alto = num(document.getElementById("alto").value);
+  const prof = muebleActual.usa_profundidad
+    ? num(document.getElementById("profundidad").value)
+    : 0;
 
-  const caj = muebleActual.usa_cajones ? Number(document.getElementById("cajones").value || 0) : 0;
-  const pta = muebleActual.usa_puertas ? Number(document.getElementById("puertas").value || 0) : 0;
-  const est = muebleActual.usa_estantes ? Number(document.getElementById("estantes").value || 0) : 0;
-  resultadoDiv.dataset.ancho = ancho;
-  resultadoDiv.dataset.alto = alto;
-  resultadoDiv.dataset.profundidad = prof;
-  resultadoDiv.dataset.cajones = caj;
-  resultadoDiv.dataset.puertas = pta;
-  resultadoDiv.dataset.estantes = est;
+  const caj = muebleActual.usa_cajones
+    ? num(document.getElementById("cajones").value)
+    : 0;
 
-  const precio = num(materialSelect.selectedOptions[0].dataset.precio);
+  const pta = muebleActual.usa_puertas
+    ? num(document.getElementById("puertas").value)
+    : 0;
 
-  const m2 = cm2ToM2(
+  const est = muebleActual.usa_estantes
+    ? num(document.getElementById("estantes").value)
+    : 0;
+
+
+  console.log({ ancho, alto, prof, caj, pta, est });
+
+  const precioM2 = num(materialSelect.selectedOptions[0].dataset.precio);
+
+  /* ESTRUCTURA */
+  const m2Estructura = cm2ToM2(
     (alto * prof) * 2 +
     (ancho * prof) * 2 +
     (ancho * alto)
   );
 
-  const total = m2 * precio;
-  resultadoDiv.innerText = "$ " + Math.round(total).toLocaleString("es-AR");
-  resultadoDiv.dataset.total = resultadoDiv.innerText;
+  /* ESTANTES */
+  const m2Estantes = est > 0 ? cm2ToM2(ancho * prof) * est : 0;
 
-  generarResumen();
-}
+  /* PUERTAS (NO MULTIPLICAN ALTURA) */
+  const m2Puertas = pta > 0 ? cm2ToM2(ancho * alto) : 0;
 
-/* ===============================
-   RESUMEN PRINT
-================================ */
-function generarResumen() {
+  const m2Total = m2Estructura + m2Estantes + m2Puertas;
+
+  console.log("m2 estructura:", m2Estructura);
+  console.log("m2 estantes:", m2Estantes);
+  console.log("m2 puertas:", m2Puertas);
+  console.log("m2 TOTAL:", m2Total);
+
+  const costoMelamina = m2Total * precioM2;
+  const costoCajones = caj * await obtenerMaterialPisoCajon();
+
+  const herrajes =
+    await calcularHerrajes("cajon", caj) +
+    await calcularHerrajes("puerta", pta) +
+    await calcularHerrajes("estante", est);
+
+  const subtotal = costoMelamina + costoCajones + herrajes;
+  const margen = await obtenerMargen();
+  const totalFinal = subtotal * (1 + margen / 100);
+
+  console.log("subtotal:", subtotal);
+  console.log("margen:", margen);
+  console.log("TOTAL:", totalFinal);
+
+  const totalTxt = "$ " + Math.round(totalFinal).toLocaleString("es-AR");
+  resultadoDiv.innerText = totalTxt;
+
+  /* IMPRESIÓN / PDF */
   resumenPrint.innerHTML = `
     <h2>Presupuesto</h2>
-
-    <p><strong>Mueble:</strong> ${muebleSelect.value}</p>
-    <p><strong>Ancho:</strong> ${resultadoDiv.dataset.ancho} cm</p>
-    <p><strong>Alto:</strong> ${resultadoDiv.dataset.alto} cm</p>
-
-    ${muebleActual.usa_profundidad
-      ? `<p><strong>Profundidad:</strong> ${resultadoDiv.dataset.profundidad} cm</p>`
-      : ""}
-
-    ${resultadoDiv.dataset.puertas > 0
-      ? `<p><strong>Puertas:</strong> ${resultadoDiv.dataset.puertas}</p>`
-      : ""}
-
-    ${resultadoDiv.dataset.cajones > 0
-      ? `<p><strong>Cajones:</strong> ${resultadoDiv.dataset.cajones}</p>`
-      : ""}
-
-    ${resultadoDiv.dataset.estantes > 0
-      ? `<p><strong>Estantes:</strong> ${resultadoDiv.dataset.estantes}</p>`
-      : ""}
-
+    <p><strong>Mueble:</strong> ${muebleActual.nombre}</p>
+    <p><strong>Ancho:</strong> ${ancho} cm</p>
+    <p><strong>Alto:</strong> ${alto} cm</p>
+    ${prof ? `<p><strong>Profundidad:</strong> ${prof} cm</p>` : ""}
+    ${caj ? `<p><strong>Cajones:</strong> ${caj}</p>` : ""}
+    ${pta ? `<p><strong>Puertas:</strong> ${pta}</p>` : ""}
+    ${est ? `<p><strong>Estantes:</strong> ${est}</p>` : ""}
     <p><strong>Terminación:</strong> ${terminacionSeleccionada.nombre}</p>
-
-    <img
-      src="${terminacionSeleccionada.imagen_url}"
-      class="terminacion-preview"
-      alt="Terminación seleccionada"
-    >
-
-    <h3>Total: ${resultadoDiv.dataset.total}</h3>
+    <img src="${terminacionSeleccionada.imagen_url}" style="max-width:200px">
+    <h3>Total: ${totalTxt}</h3>
   `;
 }
 
@@ -227,4 +279,3 @@ calcularBtn.onclick = calcular;
 ================================ */
 await cargarCategorias();
 await cargarMateriales();
-await cargarTerminaciones(coleccionSelect.value);

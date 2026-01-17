@@ -19,18 +19,8 @@ if (!user) location.href = "../view/login.html";
 ================================ */
 const container = document.getElementById("materialesContainer");
 const mensaje = document.getElementById("mensaje");
-/* ===============================
-   LOGOUT (solo si existe)
-================================ */
-const logoutBtn = document.getElementById("logoutBtn");
-
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", async () => {
-    await supabase.auth.signOut();
-    location.href = "../view/login.html";
-  });
-}
-
+const margenInput = document.getElementById("margenInput");
+const guardarMargenBtn = document.getElementById("guardarMargenBtn");
 
 const matNombre = document.getElementById("matNombre");
 const matPrecio = document.getElementById("matPrecio");
@@ -39,10 +29,23 @@ const matTipo = document.getElementById("matTipo");
 const agregarMaterialBtn = document.getElementById("agregarMaterialBtn");
 const buscador = document.getElementById("buscadorMateriales");
 
+const logoutBtn = document.getElementById("logoutBtn");
+
+/* ===============================
+   LOGOUT
+================================ */
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await supabase.auth.signOut();
+    location.href = "../view/login.html";
+  });
+}
+
 /* ===============================
    UI
 ================================ */
 function mostrarMensaje(txt) {
+  if (!mensaje) return;
   mensaje.innerText = txt;
   mensaje.style.display = "block";
   setTimeout(() => (mensaje.style.display = "none"), 2000);
@@ -52,6 +55,8 @@ function mostrarMensaje(txt) {
    CARGAR MATERIALES
 ================================ */
 async function cargarMateriales() {
+  if (!container) return;
+
   const { data, error } = await supabase
     .from("materiales")
     .select("*")
@@ -66,9 +71,54 @@ async function cargarMateriales() {
 }
 
 /* ===============================
-   RENDER
+   CARGAR MARGEN
+================================ */
+async function cargarMargen() {
+  if (!margenInput) return;
+
+  const { data, error } = await supabase
+    .from("configuracion")
+    .select("margen")
+    .eq("id", 1)
+    .single();
+
+  if (!error && data) {
+    margenInput.value = data.margen;
+  }
+}
+
+/* ===============================
+   GUARDAR MARGEN
+================================ */
+if (guardarMargenBtn && margenInput) {
+  guardarMargenBtn.onclick = async () => {
+    const margen = Number(margenInput.value);
+
+    if (isNaN(margen) || margen < 0) {
+      mostrarMensaje("Margen inválido");
+      return;
+    }
+
+    const { error } = await supabase
+      .from("configuracion")
+      .update({ margen })
+      .eq("id", 1);
+
+    if (error) {
+      console.error(error);
+      mostrarMensaje("Error al guardar margen");
+    } else {
+      mostrarMensaje("Margen actualizado");
+    }
+  };
+}
+
+/* ===============================
+   RENDER MATERIALES
 ================================ */
 function renderMateriales(materiales) {
+  if (!container) return;
+
   container.innerHTML = "";
 
   const grupos = {};
@@ -90,6 +140,7 @@ function renderMateriales(materiales) {
     `;
 
     const lista = grupo.querySelector(".material-lista");
+    if (!lista) return;
 
     items.forEach(m => {
       const item = document.createElement("div");
@@ -114,50 +165,55 @@ function renderMateriales(materiales) {
         </div>
       `;
 
-      item.querySelector('input[type="number"]').onchange = e =>
-        actualizarPrecio(m.id, e.target.value);
+      const precioInput = item.querySelector('input[type="number"]');
+      const checkbox = item.querySelector('input[type="checkbox"]');
+      const btnEdit = item.querySelector(".btn-edit");
+      const btnDelete = item.querySelector(".btn-delete");
 
-      item.querySelector('input[type="checkbox"]').onchange = e =>
-        toggleActivo(m.id, e.target.checked);
+      if (precioInput) precioInput.onchange = e => actualizarPrecio(m.id, e.target.value);
+      if (checkbox) checkbox.onchange = e => toggleActivo(m.id, e.target.checked);
 
-      item.querySelector(".btn-edit").onclick = async () => {
-        const nombre = prompt("Nombre:", m.nombre);
-        if (nombre === null) return;
+      if (btnEdit) {
+        btnEdit.onclick = async () => {
+          const nombre = prompt("Nombre:", m.nombre);
+          if (nombre === null) return;
 
-        const unidad = prompt("Unidad (m2 / unidad):", m.unidad);
-        if (unidad === null) return;
+          const unidad = prompt("Unidad (m2 / unidad):", m.unidad);
+          if (unidad === null) return;
 
-        const tipoNuevo = prompt(
-          "Tipo (estructura / piso_cajon / herrajes):",
-          m.tipo
-        );
-        if (tipoNuevo === null) return;
+          const tipoNuevo = prompt("Tipo (estructura / piso_cajon / herrajes):", m.tipo);
+          if (tipoNuevo === null) return;
 
-        const { error } = await supabase
-          .from("materiales")
-          .update({ nombre, unidad, tipo: tipoNuevo })
-          .eq("id", m.id);
+          const { error } = await supabase
+            .from("materiales")
+            .update({ nombre, unidad, tipo: tipoNuevo })
+            .eq("id", m.id);
 
-        if (!error) {
-          mostrarMensaje("Material actualizado");
+          if (!error) {
+            mostrarMensaje("Material actualizado");
+            cargarMateriales();
+          }
+        };
+      }
+
+      if (btnDelete) {
+        btnDelete.onclick = async () => {
+          if (!confirm(`¿Eliminar "${m.nombre}"?`)) return;
+          await supabase.from("materiales").delete().eq("id", m.id);
+          mostrarMensaje("Material eliminado");
           cargarMateriales();
-        }
-      };
-
-      item.querySelector(".btn-delete").onclick = async () => {
-        if (!confirm(`¿Eliminar "${m.nombre}"?`)) return;
-
-        await supabase.from("materiales").delete().eq("id", m.id);
-        mostrarMensaje("Material eliminado");
-        cargarMateriales();
-      };
+        };
+      }
 
       lista.appendChild(item);
     });
 
-    grupo.querySelector(".material-header").onclick = () => {
-      lista.style.display = lista.style.display === "block" ? "none" : "block";
-    };
+    const header = grupo.querySelector(".material-header");
+    if (header) {
+      header.onclick = () => {
+        lista.style.display = lista.style.display === "block" ? "none" : "block";
+      };
+    }
 
     container.appendChild(grupo);
   });
@@ -179,37 +235,42 @@ async function toggleActivo(id, activo) {
 /* ===============================
    AGREGAR
 ================================ */
-agregarMaterialBtn.onclick = async () => {
-  if (!matNombre.value || !matPrecio.value) return;
+if (agregarMaterialBtn && matNombre && matPrecio) {
+  agregarMaterialBtn.onclick = async () => {
+    if (!matNombre.value || !matPrecio.value) return;
 
-  await supabase.from("materiales").insert({
-    nombre: matNombre.value,
-    precio: Number(matPrecio.value),
-    unidad: matUnidad.value,
-    tipo: matTipo.value,
-    activo: true
-  });
+    await supabase.from("materiales").insert({
+      nombre: matNombre.value,
+      precio: Number(matPrecio.value),
+      unidad: matUnidad.value,
+      tipo: matTipo.value,
+      activo: true
+    });
 
-  matNombre.value = "";
-  matPrecio.value = "";
+    matNombre.value = "";
+    matPrecio.value = "";
 
-  mostrarMensaje("Material agregado");
-  cargarMateriales();
-};
+    mostrarMensaje("Material agregado");
+    cargarMateriales();
+  };
+}
 
 /* ===============================
    BUSCADOR
 ================================ */
-buscador.oninput = e => {
-  const texto = e.target.value.toLowerCase();
-  document.querySelectorAll(".material-item").forEach(item => {
-    item.style.display = item.textContent.toLowerCase().includes(texto)
-      ? "flex"
-      : "none";
-  });
-};
+if (buscador) {
+  buscador.oninput = e => {
+    const texto = e.target.value.toLowerCase();
+    document.querySelectorAll(".material-item").forEach(item => {
+      item.style.display = item.textContent.toLowerCase().includes(texto)
+        ? "flex"
+        : "none";
+    });
+  };
+}
 
 /* ===============================
    INIT
 ================================ */
 cargarMateriales();
+cargarMargen();

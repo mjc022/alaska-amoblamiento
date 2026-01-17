@@ -138,15 +138,16 @@ buscadorInput.addEventListener("input", () => {
 guardarBtn.onclick = async () => {
   if (!nombreInput.value) return alert("Nombre requerido");
 
-  const data = {
-    nombre: nombreInput.value,
-    categoria_id: categoriaSelect.value,
-    usa_cajones: chkCaj.checked,
-    usa_puertas: chkPta.checked,
-    usa_estantes: chkEst.checked,
-    usa_profundidad: chkProf.checked,
-    activo: chkActivo.checked
-  };
+ const data = {
+  nombre: nombreInput.value,
+  categoria_id: Number(categoriaSelect.value), // <-- esto es clave
+  usa_cajones: chkCaj.checked,
+  usa_puertas: chkPta.checked,
+  usa_estantes: chkEst.checked,
+  usa_profundidad: chkProf.checked,
+  activo: chkActivo.checked
+};
+
 
   if (editandoId) {
     await supabase.from("muebles").update(data).eq("id", editandoId);

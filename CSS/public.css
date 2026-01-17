@@ -1,105 +1,162 @@
-/* ================= MOBILE LAYOUT INDEX ================= */
+/* ===============================
+   INDEX – AJUSTES GENERALES
+================================ */
+
+/* HERO */
+#hero {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#hero a {
+  width: fit-content;
+}
+
+#hero .btn-secundario {
+  border: 1px solid var(--color-text);
+  padding: 14px 28px;
+  font-size: 0.9rem;
+  margin-left: 12px;
+}
+
+/* ===============================
+   HEADER (mobile)
+================================ */
 @media (max-width: 768px) {
-  /* HEADER */
   header {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 16px 20px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  nav a {
-    font-size: 1rem;
-  }
-
-  /* HERO */
-  #hero {
-    padding: 60px 20px 40px;
+    gap: 16px;
     text-align: center;
   }
 
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+/* ===============================
+   HERO RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  #hero {
+    padding: 80px 20px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+
   #hero h2 {
-    font-size: 2rem;
+    font-size: 2.1rem;
+    line-height: 1.2;
   }
 
   #hero p {
     font-size: 1rem;
-    max-width: 100%;
-    margin: 20px auto;
   }
 
   #hero a {
-    margin: 12px 6px 0;
-    padding: 12px 20px;
-    font-size: 0.85rem;
-  }
-
-  /* PRODUCTOS */
-  .productos-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  /* PROCESO */
-  #proceso ol {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding-left: 0;
-  }
-
-  /* GALERÍA */
-  .galeria-teaser {
-    padding: 40px 20px;
-  }
-
-  .btn-galeria {
-    padding: 10px 18px;
-    font-size: 0.85rem;
-  }
-
-  /* CONTACTO */
-  #contacto {
-    padding: 60px 20px;
-  }
-
-  form {
     width: 100%;
+    text-align: center;
   }
 
-  input,
-  textarea,
-  button {
-    font-size: 0.9rem;
+  #hero .btn-secundario {
+    margin-left: 0;
   }
 
-  .social-links a {
-    font-size: 28px;
+   #hero .hero-actions {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
   }
 }
 
-/* AJUSTES ESPECÍFICOS */
-.categoria-row {
-  width: 100%;
-  flex-wrap: wrap;
+
+
+ 
+
+
+/* ===============================
+   PRODUCTOS
+================================ */
+.productos-grid article {
+  transition: transform 0.2s ease;
 }
 
-#btnNuevaCategoria {
-  margin-left: 0;
-  margin-top: 8px;
+.productos-grid article:hover {
+  transform: translateY(-4px);
 }
 
-
-/* LOGO RESPONSIVE */
-
-
+/* ===============================
+   PROCESO (pasos)
+================================ */
 @media (max-width: 768px) {
-  header .logo img {
-    max-width: 300px; /* tamaño más pequeño en móviles */
+  .pasos li {
+    align-items: flex-start;
+  }
+
+  .icono-img {
+    width: 40px;
+    height: 40px;
   }
 }
+
+/* ===============================
+   GALERÍA TEASER
+================================ */
+.galeria-teaser p {
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+
+/* ===============================
+   CONTACTO
+================================ */
+#contacto form {
+  width: 100%;
+}
+
+#contacto p a {
+  text-decoration: underline;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+footer p {
+  line-height: 1.6;
+}
+
+/* ===============================
+   MOBILE FINO
+================================ */
+@media (max-width: 480px) {
+  section h2 {
+    font-size: 1.7rem;
+  }
+
+  .productos-grid {
+    gap: 30px;
+  }
+
+  button,
+  input,
+  textarea {
+    font-size: 1rem;
+  }
+  
+}
+
+#hero a {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+#hero .btn-secundario {
+  border: 1px solid var(--color-text);
+  padding: 14px 28px;
+}
+
+
+

@@ -11,7 +11,7 @@ const supabase = createClient(
 /* ===============================
    DOM
 ================================ */
-const grid  = document.querySelector(".grid");
+const grid  = document.querySelector(".trabajos-grid");
 const modal = document.getElementById("modal");
 const title = document.getElementById("modal-title");
 const desc  = document.getElementById("modal-desc");
@@ -44,16 +44,17 @@ async function cargarGaleria() {
 
   grid.innerHTML = "";
 
-  data.forEach(proyecto => {
-    const card = document.createElement("article");
-    card.className = `card ${proyecto.categoria}`;
-    card.addEventListener("click", () => openModal(proyecto));
+  data.forEach(trabajo => {
+    const card = document.createElement("div");
+    card.className = "trabajos-card";
+    card.classList.add(trabajo.categoria); // para que filtros funcionen
+    card.addEventListener("click", () => openModal(trabajo));
 
-    const portada = proyecto.galeria_media.find(m => m.tipo === "img");
+    const portada = trabajo.galeria_media.find(m => m.tipo === "img");
 
     card.innerHTML = `
-      <img src="${portada?.url || ""}" alt="${proyecto.titulo}">
-      <h3>${proyecto.titulo}</h3>
+      <img src="${portada?.url || ""}" alt="${trabajo.titulo}">
+      <h3>${trabajo.titulo}</h3>
     `;
 
     grid.appendChild(card);
@@ -63,18 +64,18 @@ async function cargarGaleria() {
 /* ===============================
    MODAL
 ================================ */
-function openModal(proyecto) {
-  title.textContent = proyecto.titulo;
-  desc.textContent  = proyecto.descripcion;
+function openModal(trabajo) {
+  title.textContent = trabajo.titulo;
+  desc.textContent  = trabajo.descripcion;
   media.innerHTML   = "";
 
-  proyecto.galeria_media.forEach(item => {
+  trabajo.galeria_media.forEach(item => {
     let el;
 
     if (item.tipo === "img") {
       el = document.createElement("img");
       el.src = item.url;
-      el.alt = proyecto.titulo;
+      el.alt = trabajo.titulo;
     }
 
     if (item.tipo === "video") {
@@ -97,6 +98,11 @@ function closeModal() {
 }
 
 /* ===============================
+   BOTÓN CERRAR (X)
+================================ */
+document.querySelector(".modal .close").addEventListener("click", closeModal);
+
+/* ===============================
    EVENTOS MODAL
 ================================ */
 window.addEventListener("click", e => {
@@ -117,7 +123,7 @@ document.querySelectorAll(".filtros button").forEach(btn => {
 
     const filtro = btn.dataset.filter;
 
-    document.querySelectorAll(".card").forEach(card => {
+    document.querySelectorAll(".trabajos-card").forEach(card => {
       card.style.display =
         filtro === "all" || card.classList.contains(filtro)
           ? "block"
@@ -138,9 +144,9 @@ function aplicarFiltroDesdeURL() {
     btn.classList.toggle("active", btn.dataset.filter === categoria);
   });
 
-  document.querySelectorAll(".card").forEach(card => {
+  document.querySelectorAll(".trabajos-card").forEach(card => {
     card.style.display =
-      card.classList.contains(categoria) ? "flex" : "none";
+      card.classList.contains(categoria) ? "block" : "none";
   });
 }
 

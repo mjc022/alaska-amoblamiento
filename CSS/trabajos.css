@@ -1,224 +1,182 @@
-/* =========================
-   HEADER DESKTOP
-========================= */
-header {
-  max-width: 1200px;
-  margin: auto;
-  padding: 24px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header h1 {
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-}
-
-
-nav ul {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-}
-
-nav a {
-  font-size: 1.2rem;
-  text-decoration: none;
-}
-
-nav a:hover {
-  color: var(--color-text);
-}
-
-/* =========================
-   SECCIÓN TRABAJOS
-========================= */
+/* ===============================
+   SECCIÓN
+================================ */
 .trabajos {
-  max-width: 1200px;
-  margin: auto;
-  padding: 40px 20px;
+  padding: 60px 20px;
 }
 
-/* =========================
-   FILTROS
-========================= */
-.filtros {
-  display: flex;
-  gap: 10px;
+.trabajos h1 {
+  text-align: center;
   margin-bottom: 30px;
 }
 
-.filtros button {
-  padding: 8px 16px;
-  border: 1px solid #000;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
-}
-
-/* =========================
-   GRID / CARDS
-========================= */
-.grid {
+/* ===============================
+   GRID
+================================ */
+.trabajos-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
 }
 
-.card {
-  display: block;
+/* ===============================
+   CARD
+================================ */
+.trabajos-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.card img {
+.trabajos-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+/* IMAGEN UNIFORME */
+.trabajos-card img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 6px;
+  height: 180px;        /* 🔥 TODAS IGUALES */
+  object-fit: cover;    /* 🔥 RECORTE PROLIJO */
   display: block;
 }
 
-.card h3 {
-  margin-top: 10px;
-  font-size: 0.95rem;
+/* TEXTO */
+.trabajos-card h3 {
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
 }
 
-/* =========================
-   MODAL
-========================= */
+/* ===============================
+   MODAL (CLAVE)
+================================ */
+/* ===============================
+   MODAL SCROLL FIX
+================================ */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.8);
-  z-index: 999;
+  background: rgba(0,0,0,.6);
+  z-index: 9999;
+
+  /* 🔥 CLAVE */
+  overflow-y: auto;
 }
 
+/* CONTENEDOR */
 .modal-content {
   background: #fff;
-  max-width: 600px;
-  width: 90%;
-  max-height: 85vh;
-  margin: 5vh auto;
+  max-width: 900px;
+  margin: 40px auto;
   padding: 20px;
+  border-radius: 10px;
+
+  /* 🔥 PERMITE SCROLL INTERNO */
+  max-height: calc(100vh - 80px);
   overflow-y: auto;
-  border-radius: 6px;
 }
 
-.close {
-  float: right;
-  cursor: pointer;
-  font-size: 24px;
-}
-
-.modal-media {
-  text-align: center;
-}
 
 .modal-media img,
 .modal-media video {
   max-width: 100%;
-  max-height: 65vh;
+  max-height: 70vh;
   object-fit: contain;
-  display: block;
-  margin: 0 auto 15px;
+  margin-bottom: 12px;
 }
 
 #modal-desc {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 10px;
 }
 
-/* =========================
-   RESPONSIVE MOBILE
-========================= */
+/* ===============================
+   BOTÓN CERRAR MODAL
+================================ */
+.modal-content {
+  position: relative; /* 🔥 CLAVE */
+}
+
+/* X */
+.modal .close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+
+  color: #000;
+  background: none;
+  border: none;
+
+  z-index: 10;
+}
+
+/* hover suave */
+.modal .close:hover {
+  opacity: 0.6;
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
 @media (max-width: 768px) {
-
-  /* HEADER MOBILE */
-  header {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 16px 20px;
-    gap: 14px;
+  .trabajos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
   }
 
-  /* LOGO */
-  header .logo {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  .trabajos-card img {
+    height: 140px;
   }
 
-  header .logo img {
-    width: auto;
-    max-width: 200px;
-    height: auto;
+  .trabajos-card h3 {
+    font-size: 0.95rem;
   }
-
-  /* NAV */
-  nav {
-    width: 100%;
-  }
-
-  nav ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 0;
-    margin: 0;
-  }
-
-  nav ul li {
-    width: 100%;
-    text-align: center;
-  }
-
-  nav a {
-    font-size: 1rem;
-    display: inline-block;
-  }
-
-  /* TRABAJOS */
-  .trabajos {
-    padding: 30px 15px;
-  }
-
-  /* FILTROS */
-  .filtros {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    gap: 8px;
-    padding-bottom: 8px;
-  }
-
-  .filtros button {
-    font-size: 0.85rem;
-    padding: 6px 12px;
-  }
-
-  /* GRID */
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  /* MODAL */
-  .modal-content {
-    max-width: 95%;
-    max-height: 90vh;
-    padding: 15px;
-  }
-
-  .modal-media img,
-  .modal-media video {
-    max-height: 55vh;
-  }
-
-  #modal-desc {
-    font-size: 0.9rem;
+  
+  nav{
+    position: static;
+    transform: none;
   }
 }
 
+/* ===============================
+   FILTROS
+================================ */
+.filtros{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 auto 30px; /* <-- separación con la galería */
+}
+
+.filtros button{
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.filtros button.active{
+  background: var(--color-text);
+  color: #fff;
+  border-color: var(--color-text);
+}
+
+/* un poco de aire arriba del grid también */
+.trabajos-grid{
+  margin-top: 10px;
+}
