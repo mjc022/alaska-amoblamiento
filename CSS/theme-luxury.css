@@ -1,0 +1,12 @@
+/* ===============================
+   THEME LUXURY / MADERA
+================================ */
+:root {
+  --color-bg: #f6f4f1;
+  --color-text: #3b2a1a;     /* marrón oscuro */
+  --color-muted: #7a6a5a;   /* marrón claro */
+  --color-border: #d8cfc4;  /* borde cálido */
+
+--btn-primary-bg: #8b5e3c;  /* marrón medio */
+  --btn-primary-hover-bg: #a6784e; /* marrón claro */
+}

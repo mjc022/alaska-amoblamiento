@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Simulador de Presupuesto</title>
@@ -13,63 +14,80 @@
 
 <body>
 
-<header>
-  <div class="logo">
-    <a href="/index.html">
-      <img src="/Images/logo3.png" alt="Alaska Amoblamientos">
-    </a>
+  <header>
+    <div class="logo">
+      <a href="/index.html">
+        <img src="/Images/logo3.png" alt="Alaska Amoblamientos">
+      </a>
+    </div>
+  </header>
+
+  <div id="simulador" class="box">
+    <h2>Simulador de Presupuesto</h2>
+
+    <label>Categoría</label>
+    <select id="categoria"></select>
+
+    <label>Mueble</label>
+    <select id="mueble"></select>
+
+    <label>Material</label>
+    <select id="material"></select>
+
+    <!-- ===============================
+   COLOR ESTRUCTURA
+================================ -->
+    <label>Color de estructura</label>
+    <select id="coleccionEstructura">
+      <option value="">Seleccionar colección</option>
+      <option value="natural">Natural</option>
+      <option value="nativas">Nativas</option>
+      <option value="life">Life</option>
+    </select>
+
+    <div id="gridEstructura" class="terminaciones-grid"></div>
+
+    <label>Ancho (cm)</label>
+    <input id="ancho" type="number">
+
+    <label>Alto (cm)</label>
+    <input id="alto" type="number">
+
+    <label>Profundidad (cm)</label>
+    <input id="profundidad" type="number">
+
+    <label>Cajones</label>
+    <input id="cajones" type="number">
+
+    <label>Puertas</label>
+    <input id="puertas" type="number">
+
+    <label>Estantes</label>
+    <input id="estantes" type="number">
+
+    <!-- ===============================
+   COLOR FRENTE
+================================ -->
+    <label>Color del frente</label>
+    <select id="coleccionFrente">
+      <option value="">Seleccionar colección</option>
+      <option value="natural">Natural</option>
+      <option value="nativas">Nativas</option>
+      <option value="life">Life</option>
+    </select>
+
+    <div id="gridFrente" class="terminaciones-grid"></div>
+
+    <button id="calcularBtn">Calcular</button>
+    <button onclick="window.print()">Imprimir / PDF</button>
+
+    <h3>Total</h3>
+    <div id="resultado">$ 0</div>
   </div>
-</header>
 
-<div id="simulador" class="box">
-  <h2>Simulador de Presupuesto</h2>
+  <div id="resumenPrint"></div>
 
-  <label>Categoría</label>
-  <select id="categoria"></select>
-
-  <label>Mueble</label>
-  <select id="mueble"></select>
-
-  <label>Material</label>
-  <select id="material"></select>
-
-  <label>Terminación</label>
-  <select id="coleccionTerminacion">
-    <option value="">Seleccionar colección</option>
-    <option value="natural">Natural</option>
-    <option value="nativas">Nativas</option>
-    <option value="life">Life</option>
-  </select>
-
-  <div id="terminacionesGrid" class="terminaciones-grid"></div>
-
-  <label>Ancho (cm)</label>
-  <input id="ancho" type="number">
-
-  <label>Alto (cm)</label>
-  <input id="alto" type="number">
-
-  <label>Profundidad (cm)</label>
-  <input id="profundidad" type="number">
-
-  <label>Cajones</label>
-  <input id="cajones" type="number">
-
-  <label>Puertas</label>
-  <input id="puertas" type="number">
-
-  <label>Estantes</label>
-  <input id="estantes" type="number">
-
-  <button id="calcularBtn">Calcular</button>
-  <button onclick="window.print()">Imprimir / PDF</button>
-
-  <h3>Total</h3>
-  <div id="resultado">$ 0</div>
-</div>
-
-<div id="resumenPrint"></div>
-
-<script type="module" src="/JS/simulador/simulador.js"></script>
+  <script type="module" src="/JS/simulador/simulador.js"></script>
 </body>
+
 </html>
